@@ -1,484 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<script src="https://kit.fontawesome.com/8119dfca45.js" crossorigin="anonymous"></script>
-<script src="//static.tumblr.com/gtjt4bo/QRmphdsdv/glenplayer02.js"></script>
-<script src="https://kit.fontawesome.com/8119dfca45.js" crossorigin="anonymous"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-  </head>
-<script type="text/javascript">
-
-// <![CDATA]!> 
-var bgcolour="#f7c0e3"; // background colour
-var fgcolour="#fbcfeb"; // foreground colour
-var speed=80; // speed of bubbling, lower is faster
-var shades=12; // number of shades of bubble
-
-/****************************
-* Bubbling Text Effect *
-*(c)2003-13 mf2fm web-design*
-* http://www.mf2fm.com/rv *
-* DON'T EDIT BELOW THIS BOX *
-****************************/
-var bubbcol=new Array();
-var bubbshd;
-var bubbler, bubbtxt;
-var bubbchr=new Array();
-
-function addLoadEvent(funky) {
-var oldonload=window.onload;
-if (typeof(oldonload)!='function') window.onload=funky;
-else window.onload=function() {
-if (oldonload) oldonload();
-funky();
-}
-}
-
-addLoadEvent(bubbagump);
-
-function bubbagump() { if (document.getElementById) {
-var i, fg, bg, col;
-for (bubbler=0; bubbler<=shades; bubbler++) {
-col="#";
-for (i=1; i<6; i+=2) {
-bg=parseInt(bgcolour.substring(i,i+2),16);
-fg=parseInt(fgcolour.substring(i,i+2),16);
-col+=dechex(bg+(fg-bg)*(bubbler/shades));
-}
-bubbcol[bubbler+1]=col;
-if (bubbler==Math.floor(shades/2)) bubbshd=col;
-}
-bubbler=document.getElementById("bubble");
-bubbtxt=bubbler.firstChild.nodeValue;
-while (bubbler.childNodes.length) bubbler.removeChild(bubbler.childNodes[0]);
-for (i=0; i<bubbtxt.length; i++) {
-fg=document.createElement("span");
-fg.setAttribute("id", "bubb"+i);
-fg.style.textShadow=bubbshd+" 0px 0px 2px";
-fg.appendChild(document.createTextNode(bubbtxt.charAt(i)));
-bubbler.appendChild(fg);
-}
-bubbler=setInterval("bubbling()", speed);
-}}
-
-function dechex(dec) {
-dec=Math.floor(dec);
-return ((dec<16)?'0':'')+dec.toString(16);
-}
-
-function bubbling() {
-var i, bubby;
-for (i=0; i<bubbtxt.length; i++) {
-bubby=document.getElementById("bubb"+i);
-if (bubbchr[i]) {
-bubby.style.color=bubbcol[bubbchr[i]];
-bubbchr[i]=(bubbchr[i]+1)%bubbcol.length;
-}
-else if (Math.random()<7.5/(shades*bubbtxt.length)) bubbchr[i]=1;
-}
-}
-// ]]>
-</script>
-
-<style>
-  
-* {
-padding: 0;
-margin: 0;
-box-sizing: border-box;
-}
-  
-  @font-face {
-  font-family: Groovy;
-  src: url(https://dl.dropbox.com/s/xhwazselaoffzde/PWGroovy.ttf);
-}
- 
-  @font-face { 
-   font-family: Pixelated MS Sans Serif; 
-   src: url(https://dl.dropbox.com/s/tbas0823c5svwxz/qgjjre.woff);
- }
-  
-  @font-face {
-font-family: billo;
-src: url(https://dl.dropbox.com/s/klv8tmajlqrb2xz/BILLO___.TTF);
-}
-
-html {
-height: 100vh;
-width: 100vw;
-font-size: 16px;
-position: fixed;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-body {
-background: none;
-}
-
-.all {
-
-width: 27em;
-border: 1px solid #f4f4f4;
-height: 17em;
-align-items: center;
-justify-content: center;
-display: flex;
-
-/* The image used */
-background-image: url("https://i.pinimg.com/originals/46/71/fc/4671fcc34f8a55a371a00e1c03f1fceb.jpg");
-background-repeat: no-repeat;
-background-origin: content-box;
-background-size: 445px 300px;
-padding: 0px;
-position: relative;
-border-radius: 10px;
-  border: 2px solid #f4f4f4;
-
-
-}
-
-#box {
-margin-top: 10%;
-width: 25em;
-height: 10.5em;
-border: 1px solid #fff;
-border-radius: 8px;
-background: rgb(255,255,255);
-background: linear-gradient(180deg, rgba(255,255,255,1) 50%, rgba(252,222,241,1) 100%);
--webkit-filter: drop-shadow(0px 0px 2px #fcdef1);
-padding: 5px;
-display: flex;
-}
-
-.boxes {
-width: 50%;
-height: 100%;
-background: transparent;
-border-radius: 0px;
--webkit-backdrop-filter: blur(2px);
-backdrop-filter: blur(2px);
-}
-
-.scroll {
-width:
-}
-
-.fa-caret-right {
-position: absolute;
-padding-left: 9px;
-padding-right: 6px;
-padding-top: 3px;
-padding-bottom: 3px;
-top: 40%;
-right: -3%;
-border-radius: 50%;
-color: #FBCFEB;
-background: #fff;
-border: 1px solid #fff;
-}
-
-.fa-caret-left {
-position: absolute;
-padding-left: 6px;
-padding-right: 9px;
-padding-top: 3px;
-padding-bottom: 3px;
-top: 40%;
-left: -3%;
-border-radius: 50%;
-color: #FBCFEB;
-background: #fff;
-border: 1px solid #fff;
-}
-
-i{
-cursor: pointer;
-}
-
-#bubble {
-font-family: billo;
-color: #f7c0e3;
-font-size: 2em;
-position: absolute;
-top: 10px;
-left: 10px;
--webkit-text-stroke: 0.2px #000;
-
-}
-.kitty {
--webkit-mask-image: url(https://media.discordapp.net/attachments/804937299702841415/877328648808591420/57a622d5e160e83551bea56ff47b4f49-removebg-preview.png);
--webkit-mask-size: 103%;
--webkit-mask-repeat: no-repeat;
--webkit-mask-position: center;
-  height: auto;
-  width: 40%;
-  margin-top: 5px;
-  margin-right 0px;
-  margin-left 0px;
-  margin-bottom:  10px;
-  border: 4.px inset;
-}
-  #info {
-  opacity:  1;
-  font-family: groovy;
-  font-size: 2em;
-  color: white;
-  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000, 0 0;
-
-}
-
-#info2 {
-  opacity:  1;
-  font-family: groovy;
-  font-size: 2em;
-  color: white;
-  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000, 0 0; 
-}
-
-#info3 {
-  opacity:  1;
-  font-family: 'Magica';
-  font-size: 2em;
-  color: white;
-  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000, 0 0;
-    position: absolute;
-  z-index: 15;
-  right: 0.8%;
-  bottom: 80.9%;
-}
-
-  
-::selection {
-color: #fff;
-}
-  /* my info flip card */
-  /* to add images in a flip card 1*/
-.row{
-    width: 105%;
-    margin: auto; 
-    display: flex;
-    align-items: right;
-    justify-content: space-between;
-     margin-top: 0%;
-
-}
-
-.col{
-    flex-basis: 30%;
-    overflow: hidden;
- 
-}
-
-.card  {
-    width: 200px;
-    height: 200px;
-     margin-bottom: 2px;
-    margin-left: -10px;
-    margin-right: 0px;
-    margin-top: 20px;
-    perspective: 1000px;
-    cursor: pointer;
-  
-}
-
-.inner-box{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    border-radius: 0px;
-    transition: transform 1s;
-    transform-style:preserve-3d ;
-  background-color: none; 
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Light Pink Background</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
     
-}
-/* both card at same position*/
-.card-front, .card-back{
-    position: absolute;
-    backface-visibility: hidden;
-    border-radius: 4px;
-   width: 100%;
-   height: 60%;
-
-}
-/* time to add image*/ 
-.card-front{
- 
-    background-position: center;
-    background-size: cover;
-}
-
-
-
-/* Card to flip in 180deg transition is added in inner-box*/
-  /* opposite side from inner-box, social media*/
-
-.card-back{
-    background:#fff;
-  border-radius: 0.75em;
-    border: 4px solid #FFD0ED;
-  box-shadow: 0 0 0 1px black, inset 0 0 0 1px black, 0px 0px 8px 0px #000;
-    transform: rotateX(180deg);
-     font-family: Pixelated MS Sans Serif;
-
-} 
-
-.card:hover .inner-box{
-    transform: rotateX(-180deg); 
-}
-/* when card rotate the name also rotate*/
-.card:hover span{
-    transform: translateY(140px);
-}
-
-p{
-    display: inline-block;
-    color: #fff;
-    padding-bottom: 1px;
-    border-bottom: 1px solid #fff;
-    margin-top: 140px;
-}
-
-
-
-/* Flip Card 2*/
-    /* front side(inner-box) : about me*/
-
-.front-1{
-    background-image: 
-    url(https://64.media.tumblr.com/e522cf7795538e8956f5a6d4475790e5/46036494f22c729b-cf/s250x400/7361d38382f71954f7044233ec7f1a626a74bb8f.jpg);
-  border-radius: 0.75em;
-    border: 4px solid #FFD0ED;
-  box-shadow: 0 0 0 1px black, inset 0 0 0 1px black, 0px 0px 8px 0px #000;
-     font-family: Pixelated MS Sans Serif;
+    @font-face {
+      font-family: Groovy;
+      src: url(https://dl.dropbox.com/s/xhwazselaoffzde/PWGroovy.ttf);
+    }
+    
+    @font-face { 
+      font-family: Pixelated MS Sans Serif; 
+      src: url(https://dl.dropbox.com/s/tbas0823c5svwxz/qgjjre.woff);
+    }
+    
+    @font-face {
+      font-family: billo;
+      src: url(https://dl.dropbox.com/s/klv8tmajlqrb2xz/BILLO___.TTF);
+    }
+    
+    html {
+      height: 100vh;
+      width: 100vw;
       font-size: 16px;
-    letter-spacing: 1px;
-padding: 6px 2px 5px 20px;
-
-}
-
-
-
-@font-face {
-font-family:'handy';
-src: url(https://dl.dropbox.com/s/kqvt2miu9r4y9ye/handy00.ttf);
-}
-
-@font-face {
-font-family: 'music';
-src: url(https://cdn.glitch.me/9bbfdfb3-4bfa-4c39-8743-5621c8b9df21/LL_RECOR.TTF);
-}
-
-/*-------MUSIC PLAYER BY GLENTHEMES-------*/
-
-#glenplayer02 {
-  position:absolute; left: 51.5em; top: 24em; z-index:500; }
-
-#glenplayer02 {
-display:flex;
-margin: auto;
-width:auto;
-margin-left: 0.5em;
-}
-
-#glenplayer02 a {text-decoration:none;}
-
-#glenplayer02 > div {
-align-self:center;
--webkit-align-self:center;
-}
-
-.music-controls {
-user-select:none;
--webkit-user-select:none;
-width:13px;
-font-size:18px;
-cursor:pointer;
-font-family: 'music';
-}
-
-.playy, .pausee {
-  font-family: 'music';
-  font-size: 1.3em; 
-  color:#f4f4f4; 
-  -webkit-filter: drop-shadow(0px 0px 1.5px #FFFFFF); 
-  font-weight: bold; 
-  } 
-  
-  /* color of play & pause buttons */
-
-.pausee {display:none;}
-
-.sonata {
-margin-left:0.4em;
-font-family: Pixelated MS Sans Serif;
-font-size:0.75em;
-color: #f4f4f4; /* color of music note symbol */
-}
-
-.labeltext {
-font-family:'handy';
-margin-left:0.3em;
-font-size: 0.6em;/* color of song title */
-}
-
-</style>
+      position: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    body {
+      background: none;
+    }
+    
+    .all {
+      width: 27em;
+      border: 1px solid #f4f4f4;
+      height: 17em;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      background-color: #fde7f3;
+      background-image: url("https://i.pinimg.com/originals/46/71/fc/4671fcc34f8a55a371a00e1c03f1fceb.jpg");
+      background-repeat: no-repeat;
+      background-origin: content-box;
+      background-size: 445px 300px;
+      padding: 0px;
+      position: relative;
+      border-radius: 10px;
+      border: 2px solid #f4f4f4;
+    }
+    
+    /* Rest of the styles... */
+  </style>
+</head>
 <body>
-<!-------MUSIC PLAYER BY GLENTHEMES------->
-<div id="glenplayer02">
-<div class="music-controls" onclick="songstart();">
-<div class="playy">d</div>
-<div class="pausee">k</div>
-</div>
-<div class="sonata"></div>
-<div class="labeltext"></div>
-</div><!--end music player-->
-
-  
-
-</style>
-<head>
-
-<div class="all">
-<span id="bubble">www.cutie.net</span>
-<div id="box">
-<i class='fas fa-caret-right'></i>
- <audio id="tune" src="https://drive.google.com/uc?export=download&id=1w_GUyvPEEwIvmggJi1qSpvrR6W80ISJg"></audio>
- <img class=kitty src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/1280px-A_black_image.jpg"> 
-    <div id="info"> they </div>
-    <div id="info2"> elle </div>
-  <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="inner-box">
-                        <!--card details*/-->
-                        <div class="card-front front-1">
-                            gggg
-                            
-                        </div>
-                        <div class="card-back">
-                        Social Media 
-                                         <div class="social-media">
-
-                               <i class="fa fa-facebook"></i>
-                                <i class="fa fa-twitter "></i>
-                                <i class="fa fa-instagram"></i>
-                                 <i class="fa fa-curiouscat"></i>
-                           </div>
-                            
-                        </div>
-  
+  <div class="all">
+    <span id="bubble">www.cutie.net</span>
+    <div id="box">
+      <i class='fas fa-caret-right'></i>
+      <audio id="tune" src="https://drive.google.com/uc?export=download&id=1w_GUyvPEEwIvmggJi1qSpvrR6W80ISJg"></audio>
+      <img class=kitty src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/1280px-A_black_image.jpg"> 
+      <div id="info"> they </div>
+      <div id="info2"> elle </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="inner-box">
+              <div class="card-front front-1">
+                gggg
+              </div>
+              <div class="card-back">
+                Social Media 
+                <div class="social-media">
+                  <i class="fa fa-facebook"></i>
+                  <i class="fa fa-twitter "></i>
+                  <i class="fa fa-instagram"></i>
+                  <i class="fa fa-curiouscat"></i>
                 </div>
-  <div id="info3"> ♥ </div
-<i class='fas fa-caret-left'></i>
-<div class="boxes" style="margin-right: 2.5px;">
-
-</div>
-<div class="boxes" style="margin-left: 2.5px;">
-
-</div>
-</div>
-         
-</div>
+              </div>
+            </div>
+          </div>
+          <div id="info3"> ♥ </div>
+          <i class='fas fa-caret-left'></i>
+          <div class="boxes" style="margin-right: 2.5px;"></div>
+          <div class="boxes" style="margin-left: 2.5px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
